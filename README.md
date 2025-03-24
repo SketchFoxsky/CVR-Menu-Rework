@@ -31,3 +31,6 @@ These plans are more optimistic in the project and are not guaranteed!
 - Player Notes on a user profile, a TXT file will be made in the UserData folder under Notes. Names of the TXT files will correspond to the UUID of a user.
   - This can be used to keep track of old names of a player or other important information you would like to keep!
 - Introduce Tab functionality to the menu as shown in the UI 2.0 preview!
+
+> [!IMPORTANT]  
+> I am in no way affiliated with Alpha Blend Interactive or the ChilloutVR Development team. This is soley a passion project by the community, for the community!
