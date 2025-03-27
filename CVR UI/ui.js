@@ -4366,6 +4366,8 @@ function inp_toggle(_obj){
 
     var self = this;
 
+
+
     this.mouseDown = function(_e){
         self.value = self.value=="True"?"False":"True";
         self.updateState();
@@ -4380,6 +4382,17 @@ function inp_toggle(_obj){
         self.obj.classList.remove("checked");
         if(self.value == "True"){
             self.obj.classList.add("checked");
+        }
+
+        if (self.type == 'subcategory') {
+            var baseId = self.name + "-";
+            var contentIdToShow = baseId + "True";
+            var selectedContent = document.getElementById(contentIdToShow);
+            if (selectedContent) {
+                selectedContent.style.display = (self.value === "True") ? 'block' : 'none';
+            }
+    
+            console.log(baseId);
         }
 
         if(self.saveOnChange){
@@ -4407,6 +4420,7 @@ function inp_toggle(_obj){
         }
     }
 
+
     this.updateValue(this.value);
 
     return {
@@ -4415,6 +4429,7 @@ function inp_toggle(_obj){
         updateValue: this.updateValue
     }
 }
+
 
 var toggles = document.querySelectorAll('.inp_toggle');
 for(var i = 0; i < toggles.length; i++){

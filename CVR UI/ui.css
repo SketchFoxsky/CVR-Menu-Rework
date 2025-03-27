@@ -69,6 +69,101 @@ h1 {
     padding-top: 10px;
 }
 
+/*Dropdown Subcategory*/
+
+.settings-dropdown-wrapper {
+    display: flex;
+    margin-top: 1em;
+    margin-right: 0;
+}
+
+.settings-dropdown-subcategory {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    position: relative;
+    padding-top: 50px;
+}
+
+.settings-dropdown-subcategory.first {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.settings-dropdown-subcategory .subcategory_toggle {
+    position: absolute;
+    top: 10;
+    left: 0;
+}
+
+.subcategory_toggle .inp_toggle {
+    height: 2em;
+    width: 2.25em;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background-color: transparent;
+    margin-bottom: 1em;
+}
+.subcategory_toggle .inp_toggle::before{ /*Clip paths are WEIRD Using Before makes it render on top for some reason*/
+    content:"";
+    height: 2em;
+    width: 2.25em;
+    position: relative;
+    top: 0;
+    z-index: -1;
+    clip-path: polygon(50% 0, 75% 0%, 100% 50%, 75% 100%, 50% 100%, 75% 50%);
+    background-color: white;
+
+}
+.subcategory_toggle .inp_toggle.checked {
+    height: 2.25em;
+    width: 2em;
+    clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+    background-color: transparent;
+    margin-bottom: 1em;
+    z-index: 0;
+}
+.subcategory_toggle .inp_toggle.checked::before{ /*Clip paths are WEIRD Using Before makes it render on top for some reason*/
+    content:"";
+    height: 2.25em;
+    width: 2em;
+    position: relative;
+    bottom: 0;
+    align-self: center;
+    z-index: -1;
+    clip-path: polygon(0 40%, 50% 65%, 100% 40%, 100% 75%, 50% 100%, 0 75%);
+    background-color: white;
+
+}
+
+.settings-dropdown-subcategory .subcategory-row-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.settings-dropdown-subcategory .subcategory-name {
+    font-size: 2em;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center; /* Centering categories is ugly */
+}
+
+.settings-dropdown-subcategory .subcategory-selector {
+    position: absolute;
+    top: 10;
+    right: 0;
+}
+
+.settings-dropdown-subcategory .subcategory-description {
+    border-top: 2px solid white;
+    font-size: 1.2em;
+    margin-top: 0.1em;
+    color: #AAA;
+    padding-top: 10px;
+}
+
+/*End of Dropdown Subcategories*/
+
 .color-primary {
     background-color: #E43600;
 }
@@ -1854,12 +1949,12 @@ h1 {
 .inp_slider.color {
     width: 100%;
 }
+
 .color-preview {
-    width: 18%;
-    position: absolute;
-    top: 0;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    bottom: 50%;
     right: 0;
-    height: 8em;
+    height: 6em;
 }
 .inp_dropdown {
     width: 15em;
