@@ -8,18 +8,21 @@ This project uplifts the menu to better match the theming of the game. Some sett
 ### Current Changes
 
 - Toggles, Dropdowns, and Sliders are now consistent and are themed after the game aesthetics.
+- Reorganized settings into categories they belonged in!
+- Renamed Categories, SubCategories and some individual Settings to better reflect WHAT they do.
+- Javascript fixes
 - Dropdown entries were made more narrow and were given clear borders, entries overlapping other settings shouldnt blend into the settings button.
 - Some elements were using the wrong CSS class, this has been fixed!
 - Button classes had thin borders that broke when playing without Anti Aliasing.
+- Combine Prop and Avatar filter pages to a consolidated Content Filter page.
+- Make Large list of settings Collapsable based on its subcategory, IE Post Processing, Avatar Removables, VR and Gampead controls etc.
 
 ### Planned Changes
 
 - Support NotoSans for non latin characters. Primarily for Japanese, Chinese, and Korean characters.
-- Combine Prop and Avatar filter pages to a consolidated Content Filter page.
-- Make Large list of settings Collapsable based on its subcategory, IE Post Processing, Avatar Removables, VR and Gampead controls etc.
-- Remove redundant filters that are handled by removeable filters.
 - Depending on how the Excessively Huge/Small tags are handled in the future, those filters will possibly be removed as well as they are largely ignored or unused.
 - Remove and Cleanup messy CSS and HTML blocks that are commented out or partially used.
+- Finish Portable Mirror implimentation.
 
 ### Far Out plans
 These plans are more optimistic in the project and are not guaranteed!
@@ -32,8 +35,6 @@ These plans are more optimistic in the project and are not guaranteed!
 - Player Notes on a user profile, a TXT file will be made in the UserData folder under Notes. Names of the TXT files will correspond to the UUID of a user.
   - This can be used to keep track of old names of a player or other important information you would like to keep!
 - Introduce Tab functionality to the menu as shown in the UI 2.0 preview!
-
-# How to Contribute
 
 > [!IMPORTANT]  
 > I am in no way affiliated with Alpha Blend Interactive or the ChilloutVR Development team. This is soley a passion project by the community, for the community!
