@@ -584,8 +584,8 @@ h1 {
 .call-profile {
     width: 8em;
     height: 8em;
-    border-radius: 50%;
     margin: 2em 0;
+    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
     background: #333333;
 }
 
@@ -2273,16 +2273,17 @@ h1 {
     height: 70%;
     top: 5%;
     left: -100%;
-
-    border-radius: 0.25em;
     overflow: hidden;
-
-    box-sizing: border-box;
-    border: 3px solid #404040;
-
-    background-color: #222222;
-
+    clip-path: polygon(2% 0, 98% 0, 100% 4%, 100% 96%, 98% 100%, 2% 100%, 0 96%, 0 4%);
+    background-color: #1a1a1a;
     text-align: center;
+    /*Outline*/
+    filter:
+    drop-shadow(2px 2px 0px #3c3c3c)
+    drop-shadow(-2px -2px 0px #3c3c3c)
+    drop-shadow(-2px 2px 0px #3c3c3c)
+    drop-shadow(2px -2px 0px #3c3c3c);
+    /*End of Outline*/
 }
 #keyboard.in {
     left: 5%;
@@ -2301,45 +2302,62 @@ h1 {
 
     display: flex;
 }
-.keyboard-row + .keyboard-row {
+/*.keyboard-row + .keyboard-row {
     border-top: 3px solid #404040;
-}
+}*/
 .keyboard-row.r1 {
     height: 10%;
 }
 .keyboard-row.r2 {
-    top: 10%;
+    top: 13%;
 }
 .keyboard-row.r3 {
-    top: 28%;
+    top: 31%;
 }
 .keyboard-row.r4 {
-    top: 46%;
+    top: 47%;
 }
 .keyboard-row.r5 {
     top: 64%;
 }
 .keyboard-row.r6 {
-    top: 82%;
+    top: 81%;
 }
 #keyoard-input {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 10%;
+    width: 80%;
     height: 100%;
-    border: 0;
-
     text-align: center;
     font-size: 2em;
     line-height: 1.5em;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 0, 100% 60%, 98% 100%, 2% 100%, 0 60%, 0 0);
+    /*Outline*/
+    filter:
+    drop-shadow(2px 2px 0px #3c3c3c)
+    drop-shadow(-2px -2px 0px #3c3c3c)
+    drop-shadow(-2px 2px 0px #3c3c3c)
+    drop-shadow(2px -2px 0px #3c3c3c);
+    /*End of Outline*/
 }
 .keyboard-key,
 .keyboard-mod,
 .keyboard-func {
-    flex: 1;
-    padding-top: 1.3em;
+    padding-top: 0.85em;
+    height: 3em;
+    width: 6.66%;
     font-size: 1.5em;
+    text-align: center;
+    clip-path: polygon(20% 8%, 80% 8%, 92% 20%, 92% 80%, 80% 92%, 20% 92%, 8% 80%, 8% 20%);
+    background-color: #1a1a1a;
+    /*Outline*/
+    filter:
+    drop-shadow(2px 2px 0px #3c3c3c)
+    drop-shadow(-2px -2px 0px #3c3c3c)
+    drop-shadow(-2px 2px 0px #3c3c3c)
+    drop-shadow(2px -2px 0px #3c3c3c);
+    /*End of Outline*/
 }
 .keyboard-key:hover,
 .keyboard-mod:hover,
@@ -2349,7 +2367,7 @@ h1 {
 .keyboard-func.active {
     background-color: #a92800;
 }
-.keyboard-key + .keyboard-key,
+/*.keyboard-key + .keyboard-key,
 .keyboard-key + .keyboard-mod,
 .keyboard-key + .keyboard-func,
 .keyboard-mod + .keyboard-key,
@@ -2359,24 +2377,28 @@ h1 {
 .keyboard-func + .keyboard-mod,
 .keyboard-func + .keyboard-func {
     border-left: 3px solid #404040;
-}
+}*/
 .keyboard-key.wide,
 .keyboard-mod.wide,
 .keyboard-func.wide {
     flex: 1.5;
+    clip-path: polygon(13% 8%, 87% 8%, 92% 20%, 92% 80%, 87% 92%, 13% 92%, 8% 80%, 8% 20%);
 }
 .keyboard-key.wider,
 .keyboard-mod.wider,
 .keyboard-func.wider {
     flex: 2;
+    clip-path: polygon(12% 8%, 89% 8%, 94% 20%, 94% 80%, 89% 92%, 11% 92%, 6% 80%, 6% 20%);
 }
 .keyboard-key.widest,
 .keyboard-mod.widest,
 .keyboard-func.widest {
     flex: 2.5;
+    clip-path: polygon(12% 8%, 89% 8%, 94% 20%, 94% 80%, 89% 92%, 11% 92%, 6% 80%, 6% 20%);
 }
 .keyboard-key.space {
     flex: 6;
+    clip-path: polygon(10% 8%, 90% 8%, 92% 20%, 92% 80%, 90% 92%, 10% 92%, 8% 80%, 8% 20%);
 }
 .cancel-key {
     background: #E43600;
@@ -2394,26 +2416,30 @@ h1 {
     width: 100%;
     margin-bottom: 1em;
     margin-top: 0.5em;
-    margin-left: 2em;
     display: flex;
+    justify-content: center;
 }
 
 .inp_button {
-    width: 10%;
-    border: 1px solid #404040;
+    width: 15%;
     text-align: center;
     line-height: 1.333333em;
     font-size: 1.5em;
-    color: rgb(60,60,60);
-    background: #EADA4C;
+    background: #1a1a1a;
+    /*Outline*/
+    filter:
+    drop-shadow(1px 1px 0px #3c3c3c)
+    drop-shadow(-1px -1px 0px #3c3c3c)
+    drop-shadow(-1px 1px 0px #3c3c3c)
+    drop-shadow(1px -1px 0px #3c3c3c);
+    /*End of Outline*/
 }
-.imperialDisplay {
-    width: 0%;
-    border: 1px solid #404040;
-    text-align: center;
-    line-height: 1.333333em;
-    font-size: 1.5em;
-    color: white;
+.inp_button.first {
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%);
+}
+
+.inp_button.last {
+    clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
 }
 
 .inp_btn_action {

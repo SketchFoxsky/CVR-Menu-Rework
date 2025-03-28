@@ -304,7 +304,7 @@
                     <div class="filter-option button" onclick="switchSettingCategorie('settings-interaction', this)">Interactions</div>
                     <div class="filter-option button" onclick="switchSettingCategorie('settings-implementation', this)">Integrations</div>
                     <div class="filter-option button" onclick="switchSettingCategorie('settings-ik', this)">Fullbody & Desktop IK</div>
-                    <div class="filter-option button" onclick="switchSettingCategorie('settings-experimental', this)">Advance Settings</div>
+                    <div class="filter-option button" onclick="switchSettingCategorie('settings-experimental', this)">Advanced Settings</div>
                     <div class="filter-option button" onclick="switchSettingCategorie('settings-support', this)">Support</div>
                 </div>
             </div>
@@ -318,11 +318,11 @@
                     <div class="option-input vertical-pack">
                         <div id="GeneralPlayerHeight" class="inp_slider no-scroll" data-min="60" data-max="250" data-current="180" data-format="{value}" data-saveOnChange="true"></div>
                         <div class="inp_button_bar">
-                            <div class="inp_button" onclick="addSettingsValue('GeneralPlayerHeight', -5);">- 5</div>
+                            <div class="inp_button first" onclick="addSettingsValue('GeneralPlayerHeight', -5);">- 5</div>
                             <div class="inp_button" onclick="addSettingsValue('GeneralPlayerHeight', -1);">- 1</div>
                             <div class="inp_btn_action" onclick="autoCalibrateHeight();">Auto Calibrate</div>
                             <div class="inp_button" onclick="addSettingsValue('GeneralPlayerHeight', 1);">+ 1</div>
-                            <div class="inp_button" onclick="addSettingsValue('GeneralPlayerHeight', 5);">+ 5</div>
+                            <div class="inp_button last" onclick="addSettingsValue('GeneralPlayerHeight', 5);">+ 5</div>
                         </div>
                     </div>
                 </div>
@@ -2022,10 +2022,10 @@
                         </div>
                     </div>
                 </div>
-                <!--Advance Content Filters-->
+                <!--Advanced Content Filters-->
                 <div class="settings-dropdown-subcategory">
                     <div class="subcategory-row-wrapper">
-                        <div class="subcategory-name">Advance Content Filters</div>
+                        <div class="subcategory-name">Advanced Content Filters</div>
                         <div class="subcategory-description">These settings apply to both Avatars and Props</div>
                         <div class="subcategory_toggle">
                             <div id="AdvContentFilters" class="inp_toggle no-scroll" data-type="subcategory" data-current="true" data-saveOnChange="false"></div>
@@ -2846,7 +2846,7 @@
                 <div class="content-btn button" onclick="resetIkSettings();">Reset IK Settings</div>
 
             </div>
-        <!-- Advance Settings -->
+        <!-- Advanced Settings -->
             <div id="settings-experimental" class="settings-categorie">
 
                 <div class="row-wrapper">
@@ -4026,8 +4026,8 @@
         </div>
         <div onclick="toggleMic();" class="toolbar-btn button action-mute"><img src="gfx/mute.svg">Unmute</div>
         <div class="toolbar-btn button tab_btn_messages" onclick="changeTab('messages', this);"><img src="gfx/nav-messages.svg">Messages</div>
+        <!--<div class="toolbar-btn button tab_btn_mods" onclick="changeTab('mods', this);"><img src="gfx/puzzle.png">Mods</div>-->
         <div class="toolbar-btn button tab_btn_settings" onclick="changeTab('settings', this);"><img src="gfx/nav-settings.svg">Settings</div>
-        <div id="props-btn" style="display:none;" onclick="" class="toolbar-btn button"><img src="gfx/mouse.svg">Props</div>
         <div class="toolbar-btn button tab_btn_exit" onclick="changeTab('exit', this);"><img src="gfx/nav-exit.svg">Exit</div>
     </div>
 </div>
