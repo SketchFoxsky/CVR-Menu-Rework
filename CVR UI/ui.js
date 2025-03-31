@@ -2672,77 +2672,92 @@ engine.on('LoadDiscover', function (_list) {
     loadDiscover(_list);
 });
 
-function loadDiscover(_list){
+function loadDiscover(_list) {
 
     document.querySelector('#discover .list-content').scrollTop = 0;
-    
-    switch(lastDiscoverType){
+
+    switch (lastDiscoverType) {
         case "avatars":
             var avatarHtml = '';
 
-            for(var i=0; _list[i]; i++){
-                if(i%4 === 0){
-                    if(i !== 0){
+            for (var i = 0; _list[i]; i++) {
+                if (i % 4 === 0) {
+                    if (i !== 0) {
                         avatarHtml += '</div>';
                     }
                     avatarHtml += '<div class="content-row">';
                 }
 
-                avatarHtml += '<div class="content-cell avatar"><div class="content-cell-formatter"></div>'+
-                    '<div class="content-cell-content"><img class="content-image" data-loading-url="'+
-                    GetCachedImage(_list[i].ResultImageCoui, _list[i].ResultImageUrl)+'"><div class="content-name">'+
-                    _list[i].ResultName.makeSafe()+'</div><div class="content-btn button first" onclick="GetAvatarDetails(\''+_list[i].ResultId+'\');">Details</div>'+
-                    '<div class="content-btn button second" onclick="changeAvatar(\''+_list[i].ResultId+'\');">Change Avatar</div></div></div>';
+                avatarHtml += `
+                    <div class="content-cell avatar">
+                        <div class="content-cell-formatter"></div>
+                        <div class="content-cell-content">
+                            <div class="content-image-wrapper">
+                                <img class="content-image" data-loading-url="${GetCachedImage(_list[i].ResultImageCoui, _list[i].ResultImageUrl)}">
+                                <div class="content-btn button second" onclick="changeAvatar('${_list[i].ResultId}');">Change Avatar</div>
+                            </div>
+                            <div onclick="GetAvatarDetails('${_list[i].ResultId}');" class="content-name">${_list[i].ResultName.makeSafe()}</div>
+                        </div>
+                    </div>`;
             }
 
             document.querySelector('#discover .list-content .flex-list').innerHTML = avatarHtml;
             break;
+
         case "worlds":
             var worldHtml = '';
 
-            for(var i=0; _list[i]; i++){
-                if(i%4 === 0){
-                    if(i !== 0){
+            for (var i = 0; _list[i]; i++) {
+                if (i % 4 === 0) {
+                    if (i !== 0) {
                         worldHtml += '</div>';
                     }
                     worldHtml += '<div class="content-row">';
                 }
 
-                worldHtml += '<div class="content-cell world"><div class="content-cell-formatter"></div>'+
-                    '<div class="content-cell-content"><img class="content-image" data-loading-url="'+
-                    GetCachedImage(_list[i].ResultImageCoui, _list[i].ResultImageUrl)+'"><div class="content-name">'+
-                    _list[i].ResultName.makeSafe()+'</div>'+
-                    '<div onclick="getWorldDetails(\''+_list[i].ResultId+'\');" class="content-btn button second">Details</div>'+
-                    '</div></div>';
+                worldHtml += `
+                    <div class="content-cell world">
+                        <div class="content-cell-formatter"></div>
+                        <div onclick="getWorldDetails('${_list[i].ResultId}');" class="content-cell-content">
+                            <img class="content-image" data-loading-url="${GetCachedImage(_list[i].ResultImageCoui, _list[i].ResultImageUrl)}">
+                            <div class="content-name">${_list[i].ResultName.makeSafe()}</div>
+                        </div>
+                    </div>`;
             }
 
             document.querySelector('#discover .list-content .flex-list').innerHTML = worldHtml;
             break;
+
         case "props":
             var propHtml = '';
 
-            for(var i=0; _list[i]; i++){
-                if(i%4 === 0){
-                    if(i !== 0){
+            for (var i = 0; _list[i]; i++) {
+                if (i % 4 === 0) {
+                    if (i !== 0) {
                         propHtml += '</div>';
                     }
                     propHtml += '<div class="content-row">';
                 }
 
-                propHtml += '<div class="content-cell prop"><div class="content-cell-formatter"></div>'+
-                    '<div class="content-cell-content"><img class="content-image" data-loading-url="'+
-                    GetCachedImage(_list[i].ResultImageCoui, _list[i].ResultImageUrl)+'"><div class="content-name">'+
-                    _list[i].ResultName.makeSafe()+'</div>'+
-                    '<div class="content-btn button first zero" onclick="getPropDetails(\''+_list[i].ResultId+'\');">Details</div>'+
-                    '<div class="content-btn button first" onclick=\'SelectProp(\"'+_list[i].ResultId+'\", \"'+GetCachedImage(_list[i].ResultImageCoui, _list[i].ResultImageUrl)+'\", \"'+_list[i].ResultName.replace(/"/g, '-').cleanLineBreaks().makeSafe()+'\");\'>Select Prop</div>'+
-                    '<div onclick="SpawnProp(\''+_list[i].ResultId+'\');" class="content-btn button second">Drop</div>'+
-                    '</div></div>';
+                propHtml += `
+                    <div class="content-cell prop">
+                        <div class="content-cell-formatter"></div>
+                        <div class="content-cell-content">
+                            <div class="content-image-wrapper">
+                                <img class="content-image" data-loading-url="${GetCachedImage(_list[i].ResultImageCoui, _list[i].ResultImageUrl)}">
+                                <div class="content-btn button first" onclick="SelectProp('${_list[i].ResultId}', '${GetCachedImage(_list[i].ResultImageCoui, _list[i].ResultImageUrl)}', '${_list[i].ResultName.replace(/"/g, '-').cleanLineBreaks().makeSafe()}');">Select Prop</div>
+                                <div class="content-btn button second" onclick="SpawnProp('${_list[i].ResultId}');">Drop</div>
+                            </div>
+                            <div onclick="getPropDetails('${_list[i].ResultId}');" class="content-name">${_list[i].ResultName.makeSafe()}</div>
+                        </div>
+                    </div>`;
             }
 
             document.querySelector('#discover .list-content .flex-list').innerHTML = propHtml;
             break;
     }
 }
+
 
 //Ui Masseges e.g. alerts, coinfirms
 var messageList = [];
