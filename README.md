@@ -2,8 +2,8 @@
 
 This project uplifts the menu to better match the theming of the game. Some settings may be moved and new functionality may be introduced in the future.
 
-### Example Image
- ![image](https://github.com/user-attachments/assets/9d920da6-c7bf-45ee-a077-bf52ce074666)
+### Example
+https://github.com/user-attachments/assets/603e56c4-8b9f-4e3a-9972-ca2ea59f60fc
 
 ### Current Changes
 
