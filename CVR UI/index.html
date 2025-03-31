@@ -208,7 +208,6 @@
             <div class="scroll-content" style="top: 4em; bottom: 3em;">
                 <div class="filter-content"></div>
             </div>
-            <!--<div class="content-btn button first" onclick="filterContent('worlds', 'wrldactive');">Reset Filters</div>-->
             <div class="content-btn button color-primary second" onclick="refreshWorlds();">Refresh</div>
         </div>
         <div class="list-content" data-content-type="worlds">
@@ -3063,6 +3062,17 @@
                     </div>
                 </div>
 
+                <div class="row-wrapper">
+                    <div class="color-indicator">
+                        <div class="color-indicator half" style="background: #FFFFFF;"></div>
+                        <div class="color-indicator half" style="background: #00FF00;"></div>
+                    </div>
+                    <div class="option-caption">Leg:</div>
+                    <div class="option-input pull-1">
+                        <div id="ExperimentalGizmosShowLeg" class="inp_toggle no-scroll" data-current="true" data-saveOnChange="true"></div>
+                    </div>
+                </div>
+
                 <!-- Experimental: Content Caching-->
                 <div class="settings-subcategory">
                     <div class="subcategory-name">Content Caching</div>
@@ -3974,12 +3984,12 @@
                 <div class="numpadButton button" data-value="3">3</div>
             </div>
             <div class="numpad-row r5">
-                <div class="numpadButton button doubleWide" data-value="0">0</div>
+                <div class="numpadButton button" data-value="-">-</div>
+                <div class="numpadButton button" data-value="0">0</div>
                 <div class="numpadButton button" data-value=".">.</div>
             </div>
-            <div class="numpadButton button horizontal single btn-back" data-value="back">Back</div>
-            <div class="numpadButton button horizontal single btn-clear" data-value="clear">Clear</div>
-            <div class="numpadButton button horizontal single btn-minus" data-value="-">-</div>
+            <div class="numpadButton button horizontal btn-back" data-value="back">Back</div>
+            <div class="numpadButton button horizontal btn-clear" data-value="clear">Clear</div>
             <div class="numpadButton button horizontal btn-enter" data-value="enter">Enter</div>
         </div>
     </div>
@@ -4026,9 +4036,10 @@
         </div>
         <div onclick="toggleMic();" class="toolbar-btn button action-mute"><img src="gfx/mute.svg">Unmute</div>
         <div class="toolbar-btn button tab_btn_messages" onclick="changeTab('messages', this);"><img src="gfx/nav-messages.svg">Messages</div>
-        <!--<div class="toolbar-btn button tab_btn_mods" onclick="changeTab('mods', this);"><img src="gfx/puzzle.png">Mods</div>-->
         <div class="toolbar-btn button tab_btn_settings" onclick="changeTab('settings', this);"><img src="gfx/nav-settings.svg">Settings</div>
         <div class="toolbar-btn button tab_btn_exit" onclick="changeTab('exit', this);"><img src="gfx/nav-exit.svg">Exit</div>
+        <!-- Insert Mods inbetween Messages and Settings -->
+        <!--<div class="toolbar-btn button tab_btn_mods" onclick="changeTab('mods', this);"><img src="gfx/puzzle.png">Mods</div>-->
     </div>
 </div>
 

@@ -414,12 +414,20 @@ function renderAvatars(_list, _forceRefresh){
     }
 }
 
-function AddAvatar(_avatar){
-    var html = '<div id="avtr_'+_avatar.AvatarId+'" class="content-cell avatar"><div class="content-cell-formatter"></div>'+
-        '<div class="content-cell-content"><img class="content-image" data-loading-url="'+
-        GetCachedImage(_avatar.AvatarImageCoui, _avatar.AvatarImageUrl)+'"><div class="content-name">'+
-        _avatar.AvatarName.makeSafe()+'</div><div class="content-btn button first" onclick="GetAvatarDetails(\''+_avatar.AvatarId+'\');">Details</div>'+
-        '<div class="content-btn button second" onclick="changeAvatar(\''+_avatar.AvatarId+'\');">Change Avatar</div></div></div>';
+function AddAvatar(_avatar) {
+    const avatarImageUrl = GetCachedImage(_avatar.AvatarImageCoui, _avatar.AvatarImageUrl);
+
+    const html = `
+        <div id="avtr_${_avatar.AvatarId}" class="content-cell avatar">
+            <div class="content-cell-formatter"></div>
+            <div class="content-cell-content">
+                <div class="content-image-wrapper">
+                    <img class="content-image" data-loading-url="${avatarImageUrl}">
+                    <div class="content-btn button second" onclick="changeAvatar('${_avatar.AvatarId}');">Change Avatar</div>
+                </div>
+                <div onclick="GetAvatarDetails('${_avatar.AvatarId}');" class="content-name">${_avatar.AvatarName.makeSafe()}</div>
+            </div>
+        </div>`;
 
     cvr('#avatars .list-content .flex-list').addHTML(html);
 }
@@ -516,11 +524,10 @@ function renderWorlds(_list, _forceRefresh){
 }
 
 function AddWorld(_world){
-    var html = '<div id="wrld_'+_world.WorldId+'" class="content-cell world"><div class="content-cell-formatter"></div>'+
+    var html = '<div onclick="getWorldDetails(\''+_world.WorldId+'\');" id="wrld_'+_world.WorldId+'" class="content-cell world"><div class="content-cell-formatter"></div>'+
         '<div class="content-cell-content"><div class="content-count" '+(_world.UsersInPublic==0?'style="display: none;"':'')+'>'+(_world.UsersInPublic==0?"":_world.UsersInPublic)+'</div><img class="content-image" data-loading-url="'+
         GetCachedImage(_world.WorldImageCoui, _world.WorldImageUrl)+'"><div class="content-name">'+
         _world.WorldName.makeSafe()+'</div>'+
-        '<div onclick="getWorldDetails(\''+_world.WorldId+'\');" class="content-btn button second">Details</div>'+
         '</div></div>';
 
     cvr('#worlds .list-content .flex-list').addHTML(html);
@@ -633,13 +640,11 @@ function AddFriend(_friend){
         _friend.UserIsOnline = userOnlineState["uo-" + _friend.UserId];
     }
 
-    var html = '<div id="frnd_'+_friend.UserId+'" class="content-cell friend '+(_friend.UserIsOnline?'frndonline':'frndoffline')+' '+_friend.FilterTags.split(',').join(' ')+'"><div class="content-cell-formatter"></div>'+
+    var html = '<div onclick="getUserDetails(\''+_friend.UserId+'\');" id="frnd_'+_friend.UserId+'" class="content-cell friend '+(_friend.UserIsOnline?'frndonline':'frndoffline')+' '+_friend.FilterTags.split(',').join(' ')+'"><div class="content-cell-formatter"></div>'+
         '<div class="content-cell-content"><div class="online-state '+(_friend.UserIsOnline?'online':'offline')+'"></div>'+
         '<img class="content-image" data-loading-url="'+
         GetCachedImage(_friend.UserImageCoui, _friend.UserImageUrl)+'"><div class="content-name">'+
-        _friend.UserName.makeSafe()+'</div><div class="content-btn button second" '+
-        'onclick="getUserDetails(\''+_friend.UserId+'\');">Details</div>'+
-        '</div></div>';
+        _friend.UserName.makeSafe()+'</div></div>';
 
     cvr('#friends .list-content .flex-list').addHTML(html);
 }
@@ -924,12 +929,10 @@ function displaySearch(_results){
         }
 
         userHtml += '<div class="content-cell friend"><div class="content-cell-formatter"></div>'+
-            '<div class="content-cell-content">'+
+            '<div onclick="getUserDetails(\''+searchUsers[i].ResultId+'\');" class="content-cell-content">'+
             '<img class="content-image" data-loading-url="'+
             GetCachedImage(searchUsers[i].ResultImageCoui, searchUsers[i].ResultImageUrl)+'"><div class="content-name">'+
-            searchUsers[i].ResultName.makeSafe()+'</div><div class="content-btn button second" '+
-            'onclick="getUserDetails(\''+searchUsers[i].ResultId+'\');">Details</div>'+
-            '</div></div>';
+            searchUsers[i].ResultName.makeSafe()+'</div></div></div>';
     }
 
     userWrapper.innerHTML = userHtml;
@@ -938,20 +941,30 @@ function displaySearch(_results){
 
     var avatarHtml = '';
 
-    for(var i=0; searchAvatars[i]; i++){
-        if(i%4 === 0){
-            if(i !== 0){
+    for (let i = 0; searchAvatars[i]; i++) {
+
+        if (i % 4 === 0) {
+            if (i !== 0) {
                 avatarHtml += '</div>';
             }
             avatarHtml += '<div class="content-row">';
         }
-
-        avatarHtml += '<div class="content-cell avatar"><div class="content-cell-formatter"></div>'+
-            '<div class="content-cell-content"><img class="content-image" data-loading-url="'+
-            GetCachedImage(searchAvatars[i].ResultImageCoui, searchAvatars[i].ResultImageUrl)+'"><div class="content-name">'+
-            searchAvatars[i].ResultName.makeSafe()+'</div><div class="content-btn button first" onclick="GetAvatarDetails(\''+searchAvatars[i].ResultId+'\');">Details</div>'+
-            '<div class="content-btn button second" onclick="changeAvatar(\''+searchAvatars[i].ResultId+'\');">Change Avatar</div></div></div>';
-    }
+    
+        const avatar = searchAvatars[i];
+        const avatarImageUrl = GetCachedImage(avatar.ResultImageCoui, avatar.ResultImageUrl);
+    
+        avatarHtml += `
+            <div class="content-cell avatar">
+                <div class="content-cell-formatter"></div>
+                <div class="content-cell-content">
+                    <div class="content-image-wrapper">
+                        <img class="content-image" data-loading-url="${avatarImageUrl}">
+                        <div class="content-btn button second" onclick="changeAvatar('${avatar.ResultId}');">Change Avatar</div>
+                    </div>
+                    <div onclick="GetAvatarDetails('${avatar.ResultId}');" class="content-name">${avatar.ResultName.makeSafe()}</div>
+                </div>
+            </div>`;
+    }    
 
     avatarWrapper.innerHTML = avatarHtml;
 
@@ -959,21 +972,30 @@ function displaySearch(_results){
 
     var worldHtml = '';
 
-    for(var i=0; searchWorlds[i]; i++){
-        if(i%4 === 0){
-            if(i !== 0){
+    for (let i = 0; i < searchWorlds.length; i++) {
+    
+        if (i % 4 === 0) {
+            if (i !== 0) {
                 worldHtml += '</div>';
             }
             worldHtml += '<div class="content-row">';
         }
-
-        worldHtml += '<div class="content-cell world"><div class="content-cell-formatter"></div>'+
-            '<div class="content-cell-content"><img class="content-image" data-loading-url="'+
-            GetCachedImage(searchWorlds[i].ResultImageCoui, searchWorlds[i].ResultImageUrl)+'"><div class="content-name">'+
-            searchWorlds[i].ResultName.makeSafe()+'</div>'+
-            '<div onclick="getWorldDetails(\''+searchWorlds[i].ResultId+'\');" class="content-btn button second">Details</div>'+
-            '</div></div>';
+    
+        const world = searchWorlds[i];
+        const worldImageUrl = GetCachedImage(world.ResultImageCoui, world.ResultImageUrl);
+    
+        worldHtml += `
+            <div class="content-cell world">
+                <div class="content-cell-formatter"></div>
+                <div onclick="getWorldDetails('${world.ResultId}');" class="content-cell-content">
+                    <img class="content-image" data-loading-url="${worldImageUrl}">
+                    <div class="content-name">
+                        ${world.ResultName.makeSafe()}
+                    </div>
+                </div>
+            </div>`;
     }
+    
 
     worldWrapper.innerHTML = worldHtml;
 
@@ -981,26 +1003,35 @@ function displaySearch(_results){
 
     var propHtml = '';
 
-    for(var i=0; searchProps[i]; i++){
-        if(i%4 === 0){
-            if(i !== 0){
+    for (let i = 0; i < searchProps.length; i++) {
+
+        if (i % 4 === 0) {
+            if (i !== 0) {
                 propHtml += '</div>';
             }
             propHtml += '<div class="content-row">';
         }
-
-        console.log(searchProps[i].ResultName);
-        console.log(searchProps[i].ResultName.makeSafe());
-
-        propHtml += '<div class="content-cell prop"><div class="content-cell-formatter"></div>'+
-            '<div class="content-cell-content"><img class="content-image" data-loading-url="'+
-            GetCachedImage(searchProps[i].ResultImageCoui, searchProps[i].ResultImageUrl)+'"><div class="content-name">'+
-            searchProps[i].ResultName.makeSafe()+'</div>'+
-            '<div class="content-btn button first zero" onclick="getPropDetails(\''+searchProps[i].ResultId+'\');">Details</div>'+
-            '<div class="content-btn button first" onclick=\'SelectProp(\"'+searchProps[i].ResultId+'\", \"'+GetCachedImage(searchProps[i].ResultImageCoui, searchProps[i].ResultImageUrl)+'\", \"'+searchProps[i].ResultName.replace(/"/g, '-').cleanLineBreaks().makeSafe()+'\");\'>Select Prop</div>'+
-            '<div onclick="SpawnProp(\''+searchProps[i].ResultId+'\');" class="content-btn button second">Drop</div>'+
-            '</div></div>';
-    }
+    
+        const prop = searchProps[i];
+        const propImageUrl = GetCachedImage(prop.ResultImageCoui, prop.ResultImageUrl);
+        const safePropName = prop.ResultName.replace(/"/g, '-').cleanLineBreaks().makeSafe();
+    
+        console.log(prop.ResultName);
+        console.log(safePropName);
+    
+        propHtml += `
+            <div class="content-cell prop">
+                <div class="content-cell-formatter"></div>
+                <div class="content-cell-content">
+                    <div class="content-image-wrapper">
+                        <img class="content-image" data-loading-url="${propImageUrl}">
+                        <div class="content-btn button first" onclick="SelectProp('${prop.ResultId}', '${propImageUrl}', '${safePropName}');">Select Prop</div>
+                        <div onclick="SpawnProp('${prop.ResultId}');" class="content-btn button second">Drop</div>
+                    </div>
+                    <div onclick="getPropDetails('${prop.ResultId}');" class="content-name">${prop.ResultName.makeSafe()}</div>
+                </div>
+            </div>`;
+    }    
 
     propWrapper.innerHTML = propHtml;
 }
@@ -1526,14 +1557,23 @@ function renderProps(_list, _forceRefresh){
     }
 }
 
-function AddProp(_prop){
+function AddProp(_prop) {
     const spawnableImageUrl = GetCachedImage(_prop.SpawnableImageCoui, _prop.SpawnableImageUrl);
-    var html = '<div id="prp_'+_prop.SpawnableId+'" class="content-cell prop"><div class="content-cell-formatter"></div>'+
-        '<div class="content-cell-content"><img class="content-image" data-loading-url="'+
-        spawnableImageUrl+'"><div class="content-name">'+
-        _prop.SpawnableName.cleanLineBreaks().makeSafe()+'</div><div class="content-btn button first zero" onclick="getPropDetails(\''+_prop.SpawnableId+'\');">Details</div>'+
-        '<div class="content-btn button first" onclick=\'SelectProp(\"'+_prop.SpawnableId+'\", \"'+spawnableImageUrl+'\", \"'+_prop.SpawnableName.replace(/"/g, '-').cleanLineBreaks().makeSafe()+'\");\'>Select Prop</div>'+
-        '<div class="content-btn button second" onclick="SpawnProp(\''+_prop.SpawnableId+'\');">Drop Prop</div></div></div>';
+
+    const html = `
+        <div id="prp_${_prop.SpawnableId}" class="content-cell prop">
+            <div class="content-cell-formatter"></div>
+            <div class="content-cell-content">
+                <div class="content-image-wrapper">
+                    <img class="content-image" data-loading-url="${spawnableImageUrl}">
+                    <div class="content-btn button first" onclick="SelectProp('${_prop.SpawnableId}', '${spawnableImageUrl}', '${_prop.SpawnableName.replace(/"/g, '-').cleanLineBreaks().makeSafe()}');">Select Prop</div>
+                    <div class="content-btn button second" onclick="SpawnProp('${_prop.SpawnableId}');">Drop Prop</div>
+                </div>
+                <div onclick="getPropDetails('${_prop.SpawnableId}');" class="content-name">
+                        ${_prop.SpawnableName.cleanLineBreaks().makeSafe()}
+                </div>
+            </div>
+        </div>`;
 
     cvr('#props .list-content .flex-list').addHTML(html);
 }
