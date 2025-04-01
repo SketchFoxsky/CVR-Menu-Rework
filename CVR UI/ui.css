@@ -327,7 +327,7 @@ h1 {
 }
 
 .friend .content-cell-formatter {
-    margin-top: 12.5em;
+    margin-top: 13em;
 }
 
 .content-cell.friend {
@@ -362,7 +362,7 @@ h1 {
 
 .friend .content-image {
     border-bottom: 3px solid #3c3c3c;
-    bottom: 2.5em;
+    bottom: 2.25em;
 }
 
 .content-cell-content {
@@ -375,14 +375,14 @@ h1 {
     position: absolute;
     width: 100%;
     height: auto;
-    bottom: 2.5em;
+    bottom: 2.25em;
     top: 0;
 }
 .content-image-wrapper {
     position: absolute;
     width: 100%;
     height: auto;
-    bottom: 2.5em;
+    bottom: 2em;
     top: 0;
     overflow: hidden;
 }
@@ -472,7 +472,7 @@ h1 {
     margin-top: 15em;
 }
 .content-cell.avatar .content-name {
-    bottom: 0.75em;
+    bottom: 0.5em;
 }
 
 .content-cell.world {
@@ -499,7 +499,7 @@ h1 {
 }
 
 .content-cell.prop .content-name {
-    bottom: 0.75em;
+    bottom: 0.5em;
 }
 
 .content-image .content-btn.first {
