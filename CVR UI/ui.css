@@ -1260,7 +1260,7 @@ h1 {
     position: absolute;
     top: 10%;
     width: 30%;
-    padding: 0.5em;
+    padding: 1em;
     height: 87.5%;
     left: 69%;
 
@@ -1269,16 +1269,31 @@ h1 {
 }
 .content-instance-players .instancePlayer {
     display: flex;
+    height: 4em;
+    clip-path: polygon(4.5% 5%, 96.5% 5%, 100% 50%, 96.5% 95%, 4.5% 95%, 0% 50%);
+    background-color: #1a1a1a;
+    margin-bottom: 0.1em;
+    /*Outline*/
+    filter:
+    drop-shadow(1px 1px 0px #3c3c3c)
+    drop-shadow(-1px -1px 0px #3c3c3c)
+    drop-shadow(-1px 1px 0px #3c3c3c)
+    drop-shadow(1px -1px 0px #3c3c3c);
+    /*End of Outline*/
+}
+.content-instance-players .instancePlayer:hover {
+    background-color: #3c3c3c;
 }
 .content-instance-players .instancePlayer .instancePlayerImage {
     width: 4em;
     height: 4em;
-    margin-right: 1em;
-    margin-bottom: 0.5em;
+    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 26% 95%, 0% 50%);
 }
 .content-instance-players .instancePlayer .instancePlayerName {
     flex: 1;
-    font-size: 1.2em;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 0.75em;
 }
 
 /*User Detail*/
